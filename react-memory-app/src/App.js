@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import TextField from "./components/TextField";
@@ -19,15 +18,10 @@ class App extends Component {
   }
 
   render() {
-    return this.state.isClicked ? (
+    return (
       <div className="App">
         <TextField/>
-        <Card onClick={this.onClick}/>
-      </div>
-    ) : (
-      <div className="App">
-        <TextField/>
-        <Card onClick={this.onClick} isClicked={this.state.isClicked}/>
+        <Card/>
       </div>
     )
   }

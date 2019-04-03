@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-class TextField extends React.Component {
+class TextField extends Component {
     render() {
         return (
-            <div style={{height: 50, width: 100}}>
-                {"Test"}
+            <div style={{height: 50, width: 200}}>
+                {"Text"}
             </div>
         )
     }
