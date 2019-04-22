@@ -15,7 +15,7 @@ const App = () => {
         name="Card"
         selected={selected}
         onClick={() => {
-          setName("Carddddd");
+          setName("Card");
           setSelected(true);
         }}
       />
