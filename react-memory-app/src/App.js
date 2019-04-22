@@ -1,37 +1,26 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 import TextField from "./components/TextField";
 import Card from "./components/Card";
 
-class App extends Component {
-  state = {
-    name: "",
-    isClicked: false
-  };
+const App = () => {
+  const [name, setName] = useState("");
+  const [selected, setSelected] = useState(false);
 
-  // If i want to pass this as prop i have to bind this method
-  onClick = () => {
-    this.setState({
-      ...this.state,
-      isClicked: true
-    })
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <TextField name={this.state.name}/>
-        <Card name="Card" selected={this.state.isClicked} onClick={(name) => {
-          this.setState({
-            ...this.state,
-            name: name,
-            isClicked: true
-          });
-        }}/>
-      </div>
-    )
-  }
-}
+  return (
+    <div className="App">
+      <TextField name={name} />
+      <Card
+        name="Card"
+        selected={selected}
+        onClick={() => {
+          setName("Card");
+          setSelected(true);
+        }}
+      />
+    </div>
+  );
+};
 
 export default App;
