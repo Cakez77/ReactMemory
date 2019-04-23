@@ -1,22 +1,25 @@
 import React, { useState } from "react";
 import "./App.css";
 
-import TextField from "./components/TextField";
-import Card from "./components/Card";
+import TextField from "./components/Presentational Components/TextField";
+import CardField from "./components/Container Components/CardField";
 
 const App = () => {
-  const [name, setName] = useState("");
-  const [selected, setSelected] = useState(false);
+  const cards = ["Card1", "Card2"];
+  const [selectedCards, setSelectedCards] = useState(["", ""]);
 
   return (
     <div className="App">
-      <TextField name={name} />
-      <Card
-        name="Card"
-        selected={selected}
-        onClick={() => {
-          setName("Card");
-          setSelected(true);
+      <TextField name={selectedCards[0]} />
+      <TextField name={selectedCards[1]} />
+      <CardField
+        cards={cards}
+        onClick={cardName => {
+          if (selectedCards[0] === "") {
+            setSelectedCards([cardName, ""]);
+          } else if (selectedCards[1] === "") {
+            setSelectedCards([selectedCards[0], cardName]);
+          }
         }}
       />
     </div>

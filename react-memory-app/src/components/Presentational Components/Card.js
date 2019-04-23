@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const Card = ({ name, selected, onClick }) => {
+const Card = ({ name, onClick }) => {
+  const [selected, setSelected] = useState(false);
   return !selected ? (
     <div
       role="presentation"
-      onClick={() => onClick(name)}
+      onClick={() => {
+        if (!selected) {
+          setSelected(true);
+          onClick(name);
+        }
+      }}
       style={{ height: 200, width: 200, backgroundColor: "#555555" }}
     >
       {name}
@@ -13,7 +19,12 @@ const Card = ({ name, selected, onClick }) => {
   ) : (
     <div
       role="presentation"
-      onClick={() => onClick(name)}
+      onClick={() => {
+        if (!selected) {
+          setSelected(true);
+          onClick(name);
+        }
+      }}
       style={{
         height: 200,
         width: 200,
@@ -30,6 +41,5 @@ export default Card;
 
 Card.propTypes = {
   name: PropTypes.string.isRequired,
-  selected: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired
 };
