@@ -9,9 +9,21 @@ const App = () => {
   const [selectedCards, setSelectedCards] = useState([]);
   const [selectable, setSelectable] = useState(true);
   const [border, setBorder] = useState(false);
-  const [color, setColor] = useState("");
+  const [color, setColor] = useState("#0000009");
+  const [reset, setReset] = useState(false);
+
+  async function resetGame() {
+    await setSelectedCards([]);
+    await setSelectable(true);
+    await setBorder(false);
+    await setColor("#000000");
+  }
 
   useEffect(() => {
+    if (reset) {
+      resetGame();
+      setReset(false);
+    }
     if (selectedCards.length === 2) {
       setSelectable(false);
       setBorder(true);
@@ -31,6 +43,7 @@ const App = () => {
       </div>
 
       <CardField
+        reset={reset}
         cardNames={cards}
         onClick={cardName => {
           if (selectedCards.length <= 2) {
@@ -39,6 +52,15 @@ const App = () => {
         }}
         selectable={selectable}
       />
+      <button
+        style={{ width: 50, height: 20 }}
+        type="button"
+        onClick={() => {
+          setReset(true);
+        }}
+      >
+        {"Reset"}
+      </button>
     </div>
   );
 };

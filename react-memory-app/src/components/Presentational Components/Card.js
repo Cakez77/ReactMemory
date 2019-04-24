@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const Card = ({ name, onClick, selectable }) => {
+const Card = ({ reset, name, onClick, selectable }) => {
   const [selected, setSelected] = useState(false);
+
+  useEffect(() => {
+    if (reset) {
+      setSelected(false);
+    }
+  });
   return !selected ? (
     <div
       role="presentation"
@@ -46,6 +52,7 @@ const Card = ({ name, onClick, selectable }) => {
 export default Card;
 
 Card.propTypes = {
+  reset: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   selectable: PropTypes.bool.isRequired
