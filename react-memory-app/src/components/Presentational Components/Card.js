@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const Card = ({ reset, name, onClick, selectable }) => {
+import backside from "../../assets/backside.svg";
+
+// eslint-disable-next-line react/prop-types
+const Card = ({ card, reset, onClick, selectable }) => {
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {
@@ -15,17 +18,17 @@ const Card = ({ reset, name, onClick, selectable }) => {
       onClick={() => {
         if (!selected && selectable) {
           setSelected(true);
-          onClick(name);
+          onClick(card.name);
         }
       }}
       style={{
-        height: 100,
-        width: 100,
-        backgroundColor: "#555555",
+        height: 110,
+        width: 110,
+        border: "2px solid #000000",
         display: "inline-block"
       }}
     >
-      {name}
+      <img src={backside} alt="" />
     </div>
   ) : (
     <div
@@ -33,18 +36,17 @@ const Card = ({ reset, name, onClick, selectable }) => {
       onClick={() => {
         if (!selected && selectable) {
           setSelected(true);
-          onClick(name);
+          onClick(card.name);
         }
       }}
       style={{
-        height: 95,
-        width: 95,
-        backgroundColor: "#555555",
+        height: 110,
+        width: 110,
         border: "2px solid #000000",
         display: "inline-block"
       }}
     >
-      {name}
+      <img src={card.image} alt="" />
     </div>
   );
 };
@@ -52,8 +54,9 @@ const Card = ({ reset, name, onClick, selectable }) => {
 export default Card;
 
 Card.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  card: PropTypes.object.isRequired,
   reset: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   selectable: PropTypes.bool.isRequired
 };

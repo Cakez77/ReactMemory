@@ -2,15 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import Card from "../Presentational Components/Card";
 
-const CardField = ({ reset, cardNames, onClick, selectable }) => {
+const CardField = ({ reset, cards, onClick, selectable }) => {
   let id = -1;
-  const cards = cardNames.map(cardName => {
+
+  const cardsTmp = cards.map(card => {
     id += 1;
     return (
       <Card
         key={id}
         reset={reset}
-        name={cardName}
+        card={card}
         onClick={onClick}
         selectable={selectable}
       />
@@ -20,11 +21,11 @@ const CardField = ({ reset, cardNames, onClick, selectable }) => {
   return (
     <div
       style={{
-        width: 300,
-        height: 110
+        width: 500,
+        height: 500
       }}
     >
-      {cards}
+      {cardsTmp}
     </div>
   );
 };
@@ -33,7 +34,7 @@ export default CardField;
 
 CardField.propTypes = {
   reset: PropTypes.bool.isRequired,
-  cardNames: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  cards: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   onClick: PropTypes.func.isRequired,
   selectable: PropTypes.bool.isRequired
 };
