@@ -1,7 +1,10 @@
 import React from "react";
 
+// Style
+import "./CardNameField.css";
+
 const CardNameField = ({ name }) => {
-  return <div classname="CardNameField">{name}</div>;
+  return <div className="CardNameField">{name}</div>;
 };
 
 export default CardNameField;

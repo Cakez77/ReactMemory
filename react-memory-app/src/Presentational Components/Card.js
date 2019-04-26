@@ -1,10 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Card = ({ card }) => {
+// Style
+import "./Card.css";
+
+const Card = ({ card, onClick, open, backside }) => {
   return (
-    <div className="Card" name={card.name}>
-      <img src={card.img} className="Card-img" alt="" />
+    <div
+      className="Card"
+      name={card.name}
+      onClick={() => onClick(card.id, card.name)}
+    >
+      <img src={open ? card.img : backside} className="Card-img" alt="" />
     </div>
   );
 };
@@ -12,5 +19,8 @@ const Card = ({ card }) => {
 export default Card;
 
 Card.propTypes = {
-  card: PropTypes.object.isRequired
+  card: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  backside: PropTypes.object.isRequired
 };

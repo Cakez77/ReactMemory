@@ -7,8 +7,8 @@ import SelectedCards from "./Container Components/SelectedCards";
 const App = () => {
   return (
     <div className="App">
-      <CardField />
       <SelectedCards />
+      <CardField />
     </div>
   );
 };

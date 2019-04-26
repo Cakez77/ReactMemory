@@ -11,9 +11,10 @@ export const CHANGE_PLAYER = "CHANGE_PLAYER";
  * Functions to create actions, these functions need to return the type of action and additional information the action needs.
  * Thsese functions are called from within the app.
  */
-export const select_card = cardName => ({
+export const select_card = (id, cardName) => ({
   type: SELECT_CARD,
-  id: cardName
+  id: id,
+  name: cardName
 });
 
 export const add_points = points => ({
