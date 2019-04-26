@@ -12,8 +12,5 @@ const Card = ({ card }) => {
 export default Card;
 
 Card.propTypes = {
-  card: PropTypes.objectOf(
-    PropTypes.string.isRequired,
-    PropTypes.img.isRequired
-  )
+  card: PropTypes.object.isRequired
 };
