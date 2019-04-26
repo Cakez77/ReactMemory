@@ -1,14 +1,19 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
+const Card = ({ card }) => {
+  return (
+    <div className="Card" name={card.name}>
+      <img src={card.img} className="Card-img" alt="" />
+    </div>
+  );
+};
 
-export const Card =({name, selected, onClickSelect}) => (
-  !selected? (
-    <div onClick={() => onClickSelect(name)} style={{height: 200, width: 200, backgroundColor: '#555555'}}>
-      {name}
-    </div>
-    ) : (
-    <div onClick={() => onClickSelect(name)} style={{height: 200, width: 200, backgroundColor: '#555555', border: '2px solid #000000'}}>
-      {name}
-    </div>
-    )
-);
+export default Card;
+
+Card.propTypes = {
+  card: PropTypes.objectOf(
+    PropTypes.string.isRequired,
+    PropTypes.img.isRequired
+  )
+};
