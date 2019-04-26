@@ -103,7 +103,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <div style={{ width: 200, height: 60 }}>
+      <div style={{ width: 300, height: 60 }}>
         <TextField name={selectedCards[0]} border={border} color={color} />
         <TextField name={selectedCards[1]} border={border} color={color} />
       </div>

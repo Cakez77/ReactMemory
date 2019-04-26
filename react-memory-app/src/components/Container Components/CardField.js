@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Card from "../Presentational Components/Card";
 
+import "./CardField.css";
+
 const CardField = ({ reset, cards, onClick, selectable }) => {
   let id = -1;
 
@@ -18,16 +20,7 @@ const CardField = ({ reset, cards, onClick, selectable }) => {
     );
   });
 
-  return (
-    <div
-      style={{
-        width: 500,
-        height: 500
-      }}
-    >
-      {cardsTmp}
-    </div>
-  );
+  return <div className="CardField">{cardsTmp}</div>;
 };
 
 export default CardField;
