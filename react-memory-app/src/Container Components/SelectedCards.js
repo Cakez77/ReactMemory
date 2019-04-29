@@ -9,11 +9,10 @@ import CardNameField from "../Presentational Components/CardNameField";
 
 const SelectedCards = ({ selectedCards, dispatch }) => {
   if (selectedCards.length > 1) {
+    console.log("Selected cards: ", selectedCards);
     if (selectedCards[0].name === selectedCards[1].name) {
-      console.log("Test, both selected Cards contain the same Name");
       dispatch(add_points());
     } else {
-      console.log("Test, the player should change now");
       dispatch(change_player());
     }
   }
@@ -32,7 +31,7 @@ const SelectedCards = ({ selectedCards, dispatch }) => {
 };
 
 const mapStateToProps = state => ({
-  selectedCards: state.selectedCards
+  selectedCards: state.deck.filter(card => card.selected === true)
 });
 
 export default connect(mapStateToProps)(SelectedCards);

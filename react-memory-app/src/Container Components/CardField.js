@@ -9,18 +9,10 @@ import { select_card } from "../Redux/Actions/actions";
 import Card from "../Presentational Components/Card";
 
 const CardField = ({ deck, onClick, backside, openCards }) => {
-  console.log("The open Cards", openCards);
-
   return (
     <div className="CardField">
       {deck.map(card => (
-        <Card
-          key={card.id}
-          card={card}
-          onClick={onClick}
-          backside={backside}
-          open={openCards.find(openCard => openCard.id === card.id)}
-        />
+        <Card key={card.id} card={card} onClick={onClick} backside={backside} />
       ))}
     </div>
   );
@@ -28,8 +20,7 @@ const CardField = ({ deck, onClick, backside, openCards }) => {
 
 const mapStateToProps = state => ({
   deck: state.deck,
-  backside: state.backside,
-  openCards: state.openCards
+  backside: state.backside
 });
 
 const mapDispatchToProps = dispatch => ({

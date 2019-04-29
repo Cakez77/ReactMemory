@@ -18,87 +18,117 @@ const INITIAL_STATE = {
     {
       id: 1,
       name: "Vader",
-      img: vader
+      img: vader,
+      selected: false,
+      open: false
     },
     {
       id: 2,
       name: "Delfin",
-      img: delfin
+      img: delfin,
+      selected: false,
+      open: false
     },
     {
       id: 3,
       name: "Witchen",
-      img: witchen
+      img: witchen,
+      selected: false,
+      open: false
     },
     {
       id: 4,
       name: "Trooper",
-      img: trooper
+      img: trooper,
+      selected: false,
+      open: false
     },
     {
       id: 5,
       name: "Fußball",
-      img: fußball
+      img: fußball,
+      selected: false,
+      open: false
     },
     {
       id: 6,
       name: "Jaguar",
-      img: jaguar
+      img: jaguar,
+      selected: false,
+      open: false
     },
     {
       id: 7,
       name: "Spinne",
-      img: spinne
+      img: spinne,
+      selected: false,
+      open: false
     },
     {
       id: 8,
       name: "Wolf",
-      img: wolf
+      img: wolf,
+      selected: false,
+      open: false
     },
     {
       id: 9,
       name: "Vader",
-      img: vader
+      img: vader,
+      selected: false,
+      open: false
     },
     {
       id: 10,
       name: "Delfin",
-      img: delfin
+      img: delfin,
+      selected: false,
+      open: false
     },
     {
       id: 11,
       name: "Witchen",
-      img: witchen
+      img: witchen,
+      selected: false,
+      open: false
     },
     {
       id: 12,
       name: "Trooper",
-      img: trooper
+      img: trooper,
+      selected: false,
+      open: false
     },
     {
       id: 13,
       name: "Fußball",
-      img: fußball
+      img: fußball,
+      selected: false,
+      open: false
     },
     {
       id: 14,
       name: "Jaguar",
-      img: jaguar
+      img: jaguar,
+      selected: false,
+      open: false
     },
     {
       id: 15,
       name: "Spinne",
-      img: spinne
+      img: spinne,
+      selected: false,
+      open: false
     },
     {
       id: 16,
       name: "Wolf",
-      img: wolf
+      img: wolf,
+      selected: false,
+      open: false
     }
   ],
   backside: backside,
-  openCards: [],
-  selectedCards: [],
   points: [[0], [0]],
   player: 1
 };
@@ -113,28 +143,29 @@ const reducer = (state = INITIAL_STATE, action) => {
     case SELECT_CARD: {
       return {
         ...state,
-        selectedCards: [
-          ...state.selectedCards,
-          { id: action.id, name: action.name }
-        ]
+        deck: state.deck.map((card, i) =>
+          i === action.id - 1 ? { ...card, selected: true } : card
+        )
       };
     }
     case ADD_POINTS: {
       return {
         ...state,
         points: state.points[state.player] + 1,
-        openCards: [
-          ...state.openCards,
-          state.selectedCards[0].id,
-          state.selectedCards[1].id
-        ]
+        deck: state.deck.map(card =>
+          card.selected === true
+            ? { ...card, open: true, selected: false }
+            : card
+        )
       };
     }
     case CHANGE_PLAYER: {
       return {
         ...state,
         player: (state.player + 1) % 2,
-        selectedCards: []
+        deck: state.deck.map(card =>
+          card.selected === true ? { ...card, selected: false } : card
+        )
       };
     }
     default: {
