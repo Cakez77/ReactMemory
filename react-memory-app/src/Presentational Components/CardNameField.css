@@ -1,0 +1,7 @@
+.CardNameField {
+  width: 100px;
+  height: 50px;
+  border: 2px solid black;
+  margin: 2px;
+  display: inline-block;
+}
