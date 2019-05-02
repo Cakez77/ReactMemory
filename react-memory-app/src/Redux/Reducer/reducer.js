@@ -129,8 +129,19 @@ const INITIAL_STATE = {
     }
   ],
   backside: backside,
-  points: [[0], [0]],
-  player: 1
+  playerInfo: [
+    {
+      id: 0,
+      playerName: "Player 1",
+      points: 0
+    },
+    {
+      id: 1,
+      playerName: "Player 2",
+      points: 0
+    }
+  ],
+  currentPlayer: 0
 };
 
 /**
@@ -151,7 +162,11 @@ const reducer = (state = INITIAL_STATE, action) => {
     case ADD_POINTS: {
       return {
         ...state,
-        points: state.points[state.player] + 1,
+        playerInfo: state.playerInfo.map((player, i) =>
+          i === state.currentPlayer
+            ? { ...player, points: player.points + 1 }
+            : player
+        ),
         deck: state.deck.map(card =>
           card.selected === true
             ? { ...card, open: true, selected: false }
@@ -162,7 +177,7 @@ const reducer = (state = INITIAL_STATE, action) => {
     case CHANGE_PLAYER: {
       return {
         ...state,
-        player: (state.player + 1) % 2,
+        currentPlayer: (state.currentPlayer + 1) % 2,
         deck: state.deck.map(card =>
           card.selected === true ? { ...card, selected: false } : card
         )
