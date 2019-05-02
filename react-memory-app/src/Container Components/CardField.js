@@ -1,16 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 // Style
 import "./CardField.css";
 
 import Card from "../Presentational Components/Card";
-import { set_randomize } from "../Redux/Actions/actions";
 
-const CardField = ({ deck, onClick, backside, dispatch }) => {
-  useEffect(() => {
-    dispatch(set_randomize(false));
-  });
+const CardField = ({ deck, onClick, backside }) => {
   return (
     <div className="CardField">
       {deck.map(card => (
@@ -22,8 +18,7 @@ const CardField = ({ deck, onClick, backside, dispatch }) => {
 
 Card.propTypes = {
   deck: PropTypes.arrayOf(PropTypes.object.isRequired),
-  onClick: PropTypes.func.isRequired,
-  sort: PropTypes.bool.isRequired
+  onClick: PropTypes.func.isRequired
 };
 
 export default CardField;
