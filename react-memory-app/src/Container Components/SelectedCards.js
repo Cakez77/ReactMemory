@@ -11,8 +11,10 @@ const SelectedCards = ({ selectedCards, dispatch }) => {
   if (selectedCards.length > 1) {
     console.log("Selected cards: ", selectedCards);
     if (selectedCards[0].name === selectedCards[1].name) {
+      console.log("add points!");
       dispatch(add_points());
     } else {
+      console.log("change Player");
       dispatch(change_player());
     }
   }

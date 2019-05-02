@@ -9,7 +9,11 @@ const Card = ({ card, onClick, backside }) => {
     <div
       className="Card"
       name={card.name}
-      onClick={() => onClick(card.id, card.name)}
+      onClick={() => {
+        if (!card.open) {
+          onClick(card.id, card.name);
+        }
+      }}
     >
       <img
         src={card.selected || card.open ? card.img : backside}

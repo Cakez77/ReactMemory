@@ -9,5 +9,5 @@ const Points = ({ points }) => <div className="Points">{points}</div>;
 export default Points;
 
 Points.propTypes = {
-  points: PropTypes.string.isRequired
+  points: PropTypes.number.isRequired
 };

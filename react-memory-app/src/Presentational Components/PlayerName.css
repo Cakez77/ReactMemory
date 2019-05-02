@@ -1,0 +1,9 @@
+.PlayerName {
+  width: 100px;
+  display: inline-block;
+  font-size: 20px;
+}
+
+.Selected {
+  border: 2px solid black;
+}
