@@ -1,4 +1,9 @@
-import { SELECT_CARD, ADD_POINTS, CHANGE_PLAYER } from "../Actions/actions";
+import {
+  SELECT_CARD,
+  ADD_POINTS,
+  CHANGE_PLAYER,
+  RESET_GAME
+} from "../Actions/actions";
 
 // Images for the Cards
 import vader from "../../assets/vader.svg";
@@ -127,7 +132,7 @@ const INITIAL_STATE = {
       selected: false,
       open: false
     }
-  ],
+  ].sort(() => Math.random() - 0.5),
   backside: backside,
   playerInfo: [
     {
@@ -154,8 +159,8 @@ const reducer = (state = INITIAL_STATE, action) => {
     case SELECT_CARD: {
       return {
         ...state,
-        deck: state.deck.map((card, i) =>
-          i === action.id - 1 ? { ...card, selected: true } : card
+        deck: state.deck.map(card =>
+          card.id === action.id ? { ...card, selected: true } : card
         )
       };
     }
@@ -181,6 +186,16 @@ const reducer = (state = INITIAL_STATE, action) => {
         deck: state.deck.map(card =>
           card.selected === true ? { ...card, selected: false } : card
         )
+      };
+    }
+    case RESET_GAME: {
+      return {
+        ...state,
+        currentPlayer: 1,
+        deck: state.deck
+          .map(card => ({ ...card, selected: false, open: false }))
+          .sort(() => Math.random() - 0.5),
+        playerInfo: state.playerInfo.map(player => ({ ...player, points: 0 }))
       };
     }
     default: {
