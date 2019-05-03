@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 // Style
 import "./Card.css";
 
-const Card = ({ card, onClick, backside }) => {
+const Card = ({ card, onClick, backside, selectable }) => {
   return (
     <div
       className="Card"
       name={card.name}
       onClick={() => {
-        if (!card.open) {
+        if (!card.open && selectable) {
           onClick(card.id, card.name);
         }
       }}
@@ -29,5 +29,6 @@ export default Card;
 Card.propTypes = {
   card: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
-  backside: PropTypes.object.isRequired
+  backside: PropTypes.object.isRequired,
+  selectable: PropTypes.bool.isRequired
 };

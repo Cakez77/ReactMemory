@@ -4,18 +4,18 @@ import React from "react";
 // Style
 import "./SelectedCards.css";
 
-import { add_points, change_player } from "../Redux/Actions/actions";
+import {
+  add_points,
+  change_player_after_5_sec
+} from "../Redux/Actions/actions";
 import CardNameField from "../Presentational Components/CardNameField";
 
 const SelectedCards = ({ selectedCards, dispatch }) => {
   if (selectedCards.length > 1) {
-    console.log("Selected cards: ", selectedCards);
     if (selectedCards[0].name === selectedCards[1].name) {
-      console.log("add points!");
       dispatch(add_points());
     } else {
-      console.log("change Player");
-      dispatch(change_player());
+      dispatch(change_player_after_5_sec());
     }
   }
 

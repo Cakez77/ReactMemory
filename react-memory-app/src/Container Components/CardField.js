@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -8,54 +8,30 @@ import "./CardField.css";
 import Card from "../Presentational Components/Card";
 import { select_card } from "../Redux/Actions/actions";
 
-const CardField = ({ deck, onClick, backside }) => {
-  let cards = deck;
-  const [random, setRandom] = useState(true);
-
-  function randomizeDeck() {
-    let currentIndex = cards.length;
-    let temporaryValue;
-    let randomIndex;
-
-    while (currentIndex !== 0) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = cards[currentIndex];
-      cards[currentIndex] = cards[randomIndex];
-      cards[randomIndex] = temporaryValue;
-    }
-
-    console.log("randomize done");
-    return deck;
-  }
-
-  async function reset() {
-    await setRandom(false);
-    await randomizeDeck();
-  }
-
-  useEffect(() => {
-    if (random) {
-      reset();
-      console.log("After resetting");
-    }
-  });
-
+const CardField = ({ deck, onClick, backside, selectedCards }) => {
   return (
     <div className="CardField">
-      {cards.map(card => (
-        <Card key={card.id} card={card} onClick={onClick} backside={backside} />
-      ))}
+      {deck.map(card => {
+        return (
+          <Card
+            key={card.id}
+            card={card}
+            onClick={onClick}
+            selectable={
+              !(selectedCards !== undefined && selectedCards.length === 2)
+            }
+            backside={backside}
+          />
+        );
+      })}
     </div>
   );
 };
 
 const mapStateToProps = state => ({
   deck: state.deck,
-  backside: state.backside
+  backside: state.backside,
+  selectedCards: state.deck.filter(card => card.selected === true)
 });
 
 const mapDispatchToProps = dispatch => ({
