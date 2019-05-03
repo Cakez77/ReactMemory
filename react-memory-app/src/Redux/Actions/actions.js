@@ -6,8 +6,6 @@
 export const SELECT_CARD = "SELECT_CARD";
 export const ADD_POINTS = "ADD_POINTS";
 export const CHANGE_PLAYER = "CHANGE_PLAYER";
-export const RESET_GAME = "RESET_GAME";
-export const SET_RANDOMIZE = "SET_RANDOMIZE";
 
 /**
  * Functions to create actions, these functions need to return the type of action and additional information the action needs.
@@ -26,13 +24,4 @@ export const add_points = points => ({
 
 export const change_player = () => ({
   type: CHANGE_PLAYER
-});
-
-export const reset_game = () => ({
-  type: RESET_GAME
-});
-
-export const set_randomize = id => ({
-  type: SET_RANDOMIZE,
-  id: id
 });

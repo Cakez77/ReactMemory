@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-import RandomizedDeck from "./Container Components/RandomizedDeck";
+import CardField from "./Container Components/CardField";
 import SelectedCards from "./Container Components/SelectedCards";
 import PlayerInfo from "./Container Components/PlayersInfo";
 
@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div className="App">
       <SelectedCards />
-      <RandomizedDeck />
+      <CardField />
       <PlayerInfo />
     </div>
   );

@@ -1,10 +1,4 @@
-import {
-  SELECT_CARD,
-  ADD_POINTS,
-  CHANGE_PLAYER,
-  RESET_GAME,
-  SET_RANDOMIZE
-} from "../Actions/actions";
+import { SELECT_CARD, ADD_POINTS, CHANGE_PLAYER } from "../Actions/actions";
 
 // Images for the Cards
 import vader from "../../assets/vader.svg";
@@ -188,20 +182,6 @@ const reducer = (state = INITIAL_STATE, action) => {
         deck: state.deck.map(card =>
           card.selected === true ? { ...card, selected: false } : card
         )
-      };
-    }
-    case RESET_GAME: {
-      return {
-        ...state,
-        randomize: true,
-        currentPlayer: 1,
-        playerInfo: state.PlayerInfo.map(player => ({ ...player, points: 0 }))
-      };
-    }
-    case SET_RANDOMIZE: {
-      return {
-        ...state,
-        randomize: action.id
       };
     }
     default: {
